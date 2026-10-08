@@ -13,9 +13,6 @@ open -a TextEdit commands.txt
 quarto create project website .
 ls -a
 
-quarto create project website .
-ls -a
-
 
 #Task 2
 open -a TextEdit .gitignore
