@@ -1,0 +1,7 @@
+/.quarto/
+**/*.quarto_ipynb
+.Rproj.user
+
+
+/_site/
+__pycache__/
