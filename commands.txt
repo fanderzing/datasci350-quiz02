@@ -1,0 +1,148 @@
+
+#Setup
+
+cd ~/Desktop/QTM_350_Danilo
+git clone https://github.com/fanderzing/datasci350-quiz02.git
+cd datasci350-quiz02
+ls -a
+
+touch commands.txt
+open -a TextEdit commands.txt
+
+#Task 1
+quarto create project website .
+ls -a
+
+quarto create project website .
+ls -a
+
+
+#Task 2
+open -a TextEdit .gitignore
+git status
+git add .gitignore
+git commit -m "Add gitignore"
+cat .gitignore
+
+#Task 3
+open -a TextEdit _quarto.yml
+change title to： "Box Office Numbers"
+cat _quarto.yml
+
+
+#Task 4-5
+rm about.qmd
+cat _quarto.yml
+ls
+
+
+#Task 6
+open -a TextEdit index.qmd
+cat index.qmd
+
+#Task 7
+touch budget-revenue.qmd
+open -a TextEdit budget-revenue.qmd
+	---
+title: "Budget and Revenue"
+---
+
+Do bigger budgets lead to bigger box-office revenue? @fig-budget-revenue plots each film's production budget against its worldwide revenue, both in millions of US dollars.
+
+```{python}
+#| echo: true
+#| label: fig-budget-revenue
+#| fig-cap: "Production budget versus worldwide revenue for 104 films (millions of US dollars)."
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+
+plt.scatter(films["budget_musd"], films["revenue_musd"])
+plt.xlabel("Budget (million USD)")
+plt.ylabel("Revenue (million USD)")
+plt.show()
+```
+
+#Task 8
+touch runtime-rating.qmd
+open -a TextEdit runtime-rating.qmd
+
+---
+title: "Runtime and Ratings"
+---
+
+Are longer films rated higher? @fig-runtime-rating plots each film's runtime in minutes against its public rating.
+
+```{python}
+#| echo: true
+#| label: fig-runtime-rating
+#| fig-cap: "Runtime (minutes) versus public rating for 104 films."
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+
+plt.scatter(films["runtime_min"], films["imdb_rating"])
+plt.xlabel("Runtime (minutes)")
+plt.ylabel("IMDb rating")
+plt.show()
+```
+
+The table below shows the mean rating of the films in each decade.
+
+```{python}
+#| echo: true
+
+films["decade"] = films["year"] // 10 * 10
+films.groupby("decade")["imdb_rating"].mean().round(2)
+```
+cat runtime-rating.qmd
+
+#Task 9
+touch bond.qmd
+open -a TextEdit bond.qmd
+
+---
+title: "The Bond Films"
+---
+
+```{python}
+#| echo: true
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+bond = films[films["franchise"] == "James Bond"]
+```
+
+The dataset includes the James Bond films released between `{python} int(bond["year"].min())` and `{python} int(bond["year"].max())`. @fig-bond shows how their worldwide revenue changed over time.
+
+```{python}
+#| echo: true
+#| label: fig-bond
+#| fig-cap: "Worldwide revenue of the James Bond films over time (millions of US dollars)."
+
+plt.plot(bond["year"], bond["revenue_musd"], marker="o")
+plt.xlabel("Year")
+plt.ylabel("Revenue (million USD)")
+plt.show()
+```
+
+
+#Task 10
+quarto render
+ls
+git status
+
+
+
+
+
+
+
+
+

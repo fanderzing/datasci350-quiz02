@@ -1,0 +1,30 @@
+---
+title: "Runtime and Ratings"
+---
+
+Are longer films rated higher? @fig-runtime-rating plots each film's runtime in minutes against its public rating.
+
+```{python}
+#| echo: true
+#| label: fig-runtime-rating
+#| fig-cap: "Runtime (minutes) versus public rating for 104 films."
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+
+plt.scatter(films["runtime_min"], films["imdb_rating"])
+plt.xlabel("Runtime (minutes)")
+plt.ylabel("IMDb rating")
+plt.show()
+```
+
+The table below shows the mean rating of the films in each decade.
+
+```{python}
+#| echo: true
+
+films["decade"] = films["year"] // 10 * 10
+films.groupby("decade")["imdb_rating"].mean().round(2)
+```

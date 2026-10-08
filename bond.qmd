@@ -1,0 +1,26 @@
+---
+title: "The Bond Films"
+---
+
+```{python}
+#| echo: true
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+bond = films[films["franchise"] == "James Bond"]
+```
+
+The dataset includes the James Bond films released between `{python} int(bond["year"].min())` and `{python} int(bond["year"].max())`. @fig-bond shows how their worldwide revenue changed over time.
+
+```{python}
+#| echo: true
+#| label: fig-bond
+#| fig-cap: "Worldwide revenue of the James Bond films over time (millions of US dollars)."
+
+plt.plot(bond["year"], bond["revenue_musd"], marker="o")
+plt.xlabel("Year")
+plt.ylabel("Revenue (million USD)")
+plt.show()
+```
