@@ -137,6 +137,23 @@ plt.show()
 quarto render
 ls
 git status
+git add .
+git commit -m "Add site pages and freeze"
+
+#Task 11
+I used this route
+quarto publish gh-pages
+
+#Task 12
+This is the link to my published website:
+https://fanderzing.github.io/datasci350-quiz02/
+([✓] Published to https://fanderzing.github.io/datasci350-quiz02/)
+
+
+#Task 13
+git add commands.txt
+git commit -m "Add command log"
+git push
 
 
 
